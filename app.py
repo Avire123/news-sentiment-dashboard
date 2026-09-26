@@ -1,3 +1,5 @@
+from src.transform import process_and_score
+from src.ingest import fetch_all_feeds
 from src.db import init_db, save_articles
 import streamlit as st
 import pandas as pd
@@ -47,9 +49,18 @@ st.caption("Real-time sentiment telemetry and NLP analytics for ingested RSS new
 df = load_data()
 
 if df.empty:
-    st.warning("⚠️ No articles found in the database. Ensure  is running to populate data.")
-    if st.button("🔄 Refresh Data"):
-        st.rerun()
+    st.warning("⚠️ No articles found in the database. Streamlit Cloud does not run background schedulers automatically.")
+    if st.button("🚀 Run Live ETL Ingestion Pipeline Now", type="primary"):
+        with st.spinner("Ingesting RSS news streams and calculating VADER sentiment scores..."):
+            init_db()
+            raw = fetch_all_feeds()
+            if raw:
+                processed = process_and_score(raw)
+                inserted = save_articles(processed)
+                st.rerun()
+            else:
+                st.error("Failed to fetch articles. Please check RSS feed connections.")
+
 else:
     st.sidebar.header("Filter Telemetry")
     
