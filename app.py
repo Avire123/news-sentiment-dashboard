@@ -1,8 +1,10 @@
+from src.db import init_db, save_articles
 import streamlit as st
 import pandas as pd
 from sqlalchemy import create_engine
 from config.settings import DATABASE_URL
 
+init_db()
 st.set_page_config(
     page_title="News Sentiment Dashboard",
     page_icon="📰",
