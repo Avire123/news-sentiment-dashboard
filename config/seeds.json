@@ -1,0 +1,24 @@
+{
+  "rss_feeds": [
+    {
+      "name": "BBC World News",
+      "category": "General",
+      "url": "http://feeds.bbci.co.uk/news/world/rss.xml"
+    },
+    {
+      "name": "Reuters Business",
+      "category": "Business",
+      "url": "http://feeds.reuters.com/reuters/businessNews"
+    },
+    {
+      "name": "TechCrunch",
+      "category": "Technology",
+      "url": "https://techcrunch.com/feed/"
+    },
+    {
+      "name": "CNBC Markets",
+      "category": "Markets",
+      "url": "https://search.cnbc.com/rs/search/combinedrender.feeds?partnerId=wrsubMktndx&id=100003114&col=10&format=rss"
+    }
+  ]
+}
